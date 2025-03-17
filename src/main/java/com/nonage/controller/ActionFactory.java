@@ -2,8 +2,7 @@ package com.nonage.controller;
 
 
 import com.nonage.controller.action.*;
-
-import javax.swing.event.CaretListener;
+import com.nonage.admin.controller.action.*;
 
 public class ActionFactory {
 
@@ -65,21 +64,22 @@ public Action getAction(String command) {
         action = new AdminLoginAction();            // 관리자 로그인
     } else if (command.equals("admin_logout")) {
         action = new AdminLogoutAction();            // 관리자 로그인
-    } else if (command.equals("admin_product_list")) {
-        action = new AdminProductListAction();      // 관리자 상품리스트
-    } else if (command.equals("admin_product_insert_form")) {
-        action = new AdminProductInsertFormAction();    //관리자 상품정보
-    }else if (command.equals("admin_product_insert")) {
-        action = new AdminProductInsertAction();        //관리자 상품등록
-    }else if(command.equals("admin_product_detail")) {
-        action = new AdminProductDetailAction();    //관리자 상품정보
-    }else if(command.equals("admin_product_update")) {
-        action = new AdminProductUpdateAction();    //관리자 상품수정 -> 업데이트 완료 후 AdminProductDetailAction 으로 이동
-    }else if(command.equals("admin_qna_list")) {
+    } // else if (command.equals("admin_product_list")) {
+//        action = new AdminProductListAction();      // 관리자 상품리스트
+//    } else if (command.equals("admin_product_insert_form")) {
+//        action = new AdminProductInsertFormAction();    //관리자 상품정보
+//    }else if (command.equals("admin_product_insert")) {
+//        action = new AdminProductInsertAction();        //관리자 상품등록
+//    }else if(command.equals("admin_product_detail")) {
+//        action = new AdminProductDetailAction();    //관리자 상품정보
+//    }else if(command.equals("admin_product_update")) {
+//        action = new AdminProductUpdateAction();    //관리자 상품수정 -> 업데이트 완료 후 AdminProductDetailAction 으로 이동
+//    }//
+    else if(command.equals("admin_qna_list")) {
         action = new AdminQnaListAction();          //관리자 Q&A목록
-    }else if(command.equals("admin_qna_detail")) {
-        action = new AdminQnaDatailAction();          //관리자 Q&A정보
-    }else if(command.equals("admin_qna_comment")) {
+    } else if(command.equals("admin_qna_detail")) {
+        action = new AdminQnaDetailAction();          //관리자 Q&A정보
+    } else if(command.equals("admin_qna_comment")) {
         action = new AdminQnaCommentAction();          //관리자 답글기능 -> 답글 완료 후 AdminQnaDatailAction 으로 이동
     }
 
