@@ -34,7 +34,7 @@ pageEncoding="UTF-8"  isELIgnored="false"%>
             </ul>
         </div>
         <article class="article">
-            <h1 class="article-intro center"> 고객들의 민원 사항을 확인하는 곳 admin </h2>
+            <h1 class="article-intro center"> 고객 민원 게시판 </h2>
             <table id="qnaList" class="table-color-design">
                 <tr>
                     <th class="table-th-design qna-list-padd">번호(답변여부)</th> <th class="table-th-design qna-list-padd">제목</th> <th class="table-th-design qna-list-padd">작성자</th> <th class="table-th-design qna-list-padd">작성일</th>
