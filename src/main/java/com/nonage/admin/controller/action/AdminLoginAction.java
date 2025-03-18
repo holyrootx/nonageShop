@@ -20,25 +20,28 @@ public class AdminLoginAction implements Action {
         String pwd = req.getParameter("pwd");
 
         AdminDAO adminDAO = AdminDAO.getInstance();
-        int result = adminDAO.confirmAuth(id,pwd);
+        AdminVO result = adminDAO.confirmAuth(id,pwd);
 
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(url);
-        if (result < 0){
+        if (result.getId() == null || result.getId().length() == 0){
+            resp.sendRedirect("admin/worker/login_fail.jsp");
+            return;
+        } else{
+            AdminVO adminLoginUser = new AdminVO();
+            adminLoginUser = adminDAO.getAdminById(id);
+
+            HttpSession session = req.getSession();
+            session.setAttribute("adminLoginUser",adminLoginUser);
+
+            url = "NonageServlet?command=admin_product_list";
+            // url = "admin/worker/loginTest.jsp";
+            // 테스트 완료
+            requestDispatcher = req.getRequestDispatcher(url);
             requestDispatcher.forward(req,resp);
         }
 
-        AdminVO adminLoginUser = new AdminVO();
-        adminLoginUser = adminDAO.getAdminById(id);
 
-        HttpSession session = req.getSession();
-        session.setAttribute("adminLoginUser",adminLoginUser);
-
-         url = "NonageServlet?command=admin_product_list";
-        // url = "admin/worker/loginTest.jsp";
-        // 테스트 완료
-        requestDispatcher = req.getRequestDispatcher(url);
-        requestDispatcher.forward(req,resp);
 
     }
 }

@@ -27,7 +27,14 @@ public class NonageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
-        doGet(req, resp);
+        String command = req.getParameter("command");
+        System.out.println(command);
+
+        ActionFactory af = ActionFactory.getInstance();
+        Action action = af.getAction(command);
+
+        if(action != null) {
+            action.execute(req, resp);
+        }
     }
 }

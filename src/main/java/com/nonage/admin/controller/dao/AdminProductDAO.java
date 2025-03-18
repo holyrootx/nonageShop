@@ -136,7 +136,9 @@ public class AdminProductDAO {
     }
     public ArrayList<AdminProductVO> searchAdminProductByPName(String pname){
         ArrayList<AdminProductVO> adminProductList = new ArrayList<>();
-        String sql = "SELECT * FROM product WHERE name LIKE '%'||?||'%' AND useyn IS NOT NULL";
+        String sql = " SELECT * FROM product " +
+                " WHERE name LIKE '%'||?||'%' " +
+                " AND useyn IS NOT NULL ";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -145,7 +147,7 @@ public class AdminProductDAO {
         try {
             conn = DBManager.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, pname.trim());
+            pstmt.setString(1, "%"+pname+"%");
             rs = pstmt.executeQuery();
 
             while(rs.next()) {

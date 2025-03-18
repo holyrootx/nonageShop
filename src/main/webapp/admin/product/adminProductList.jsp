@@ -58,9 +58,9 @@ pageEncoding="UTF-8"  isELIgnored="false"%>
         </div>
         <article class="article">
             <h2 class="admin-title center">상품 리스트</h2>
-            <form name="formm" method="post" class="search-bar center">
-                <input type="text" name="pname" placeholder="상품명" class="search-input input-design" onkeypress="enter_search()">
-                <input class="search-btn btn-design center" onclick="go_search()" value="검색"></input>
+            <form name="formm" method="post" class="search-bar center" action="NonageServlet?command=admin_product_search">
+                <input type="text" name="pname" placeholder="상품명" class="search-input input-design" min-length="1"></input>
+                <input type="submit" class="search-btn btn-design center" value="검색"></input>
                 <button class="view-all-btn btn-design">전체보기</button>
                 <button class="add-product-btn btn-design">상품등록</button>
             </form>
@@ -104,10 +104,8 @@ pageEncoding="UTF-8"  isELIgnored="false"%>
 </div>
 <!-- Product List -->
 <%@ include file="/admin/admin_footer.html" %>
-<script src="admin/product/adminProduct.js">
+<script src="admin/product/adminProduct.js"></script>
 
-}
-</script>
 
 </body>
 </html>

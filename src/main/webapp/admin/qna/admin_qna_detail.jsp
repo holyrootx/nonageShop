@@ -22,6 +22,23 @@ pageEncoding="UTF-8"  isELIgnored="false"%>
     .article-intro{
         margin: 8px 0px;
     }
+    .form-width{
+        width: 1000px;
+    }
+    .textarea-design{
+        height: 68px;
+        width: 860px;
+        font-size: 20px;
+    }
+    .flex-container-comment{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 12px auto;
+    }
+    .btn-design-comment{
+        height: 68px;
+    }
     </style>
 
 
@@ -61,26 +78,24 @@ pageEncoding="UTF-8"  isELIgnored="false"%>
             </form>
 
             <c:choose>
-            <c:when test="${adminQnaVO.rep==1}">
+                <c:when test="${adminQnaVO.rep==1}">
+                    <form action="NonageServlet?command=admin_qna_comment" class="form-width" method="post">
+                        <div class="flex-container-comment">
+                            <textarea name="reply" class="textarea-design" minlength="1"></textarea>
+                            <input type="hidden" name="qseq" value="${adminQnaVO.qseq}">
+                            <input type="submit" class="btn-design btn-design-comment" value="저장">
+                        </div>
+                    </form>
+                </c:when>
 
-            <form action="NonageServlet?command=admin_qna_comment" class="flex-container" method="post">
-                <table>
-                    <textarea name="reply" class="textarea-design" minlength="1"></textarea>
-                    <input type="hidden" name="qseq" value="${adminQnaVO.qseq}">
-                    <input type="submit" class="btn-design" value="저장">
-
-                </table>
-            </form>
-            </c:when>
-
-            <c:when test="${adminQnaVO.rep==2}">
-                <table class="comment-table table-color-design">
-                <tr>
-                    <th scope="row" class="table-th-design qna-list-th-height">댓글</th>
-                    <td>${adminQnaVO.reply}</td>
-                </tr>
-                </table>
-            </c:when>
+                <c:when test="${adminQnaVO.rep==2}">
+                    <table class="comment-table table-color-design">
+                    <tr>
+                        <th scope="row" class="table-th-design qna-list-th-height">댓글</th>
+                        <td>${adminQnaVO.reply}</td>
+                    </tr>
+                    </table>
+                </c:when>
             </c:choose>
 
         </article>

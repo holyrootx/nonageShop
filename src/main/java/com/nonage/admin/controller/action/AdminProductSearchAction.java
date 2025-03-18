@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class AdminProductSearchAction implements Action {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String url = "admin/product/adminProductList.jsp";
+        String url = "NonageServlet?command=admin_product_list";
 
         String pname = req.getParameter("pname");
 
@@ -26,20 +26,14 @@ public class AdminProductSearchAction implements Action {
         System.out.println(pname);
         if(adminLoginUser == null){
             url = "NonageServlet?command=admin_login_form";
-            RequestDispatcher dispatcher = req.getRequestDispatcher(url);
-            dispatcher.forward(req,resp);
+
+        } else{
+            AdminProductDAO adminProductDAO = AdminProductDAO.getInstance();
+            ArrayList<AdminProductVO> adminProductList = new ArrayList<>();
+            adminProductList = adminProductDAO.searchAdminProductByPName(pname);
+            System.out.println("(AdminProductSearchAction에서 알림) adminProductList.size() : " + adminProductList.size());
+            req.setAttribute("adminProductList",adminProductList);
         }
-
-        AdminProductDAO adminProductDAO = AdminProductDAO.getInstance();
-        ArrayList<AdminProductVO> adminProductList = new ArrayList<>();
-        adminProductList = adminProductDAO.searchAdminProductByPName(pname);
-        System.out.println("(AdminProductSearchAction에서 알림) adminProductList.size() : " + adminProductList.size());
-        req.setAttribute("adminProductList",adminProductList);
-
-
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher(url);
-        dispatcher.forward(req,resp);
 
 
 

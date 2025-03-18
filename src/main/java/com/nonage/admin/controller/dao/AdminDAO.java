@@ -17,9 +17,9 @@ public class AdminDAO {
 
     public static AdminDAO getInstance() {return  instance; }
 
-    public int confirmAuth(String id, String pwd) {
-        int result = -1;
+    public AdminVO confirmAuth(String id, String pwd) {
         String sql = "select * from worker where id =? AND pwd = ?";
+        AdminVO adminVO = new AdminVO();
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -33,9 +33,10 @@ public class AdminDAO {
             rs = pstmt.executeQuery();
 
             if(rs.next()) {
-                result = 1;
-            }else {
-                result = -1;
+                adminVO.setId(rs.getString("id"));
+                adminVO.setPwd(rs.getString("pwd"));
+                adminVO.setName(rs.getString("name"));
+                adminVO.setPhone(rs.getString("phone"));
             }
 
 
@@ -45,10 +46,9 @@ public class AdminDAO {
             DBManager.close(conn, pstmt, rs);
         }
 
-        return result;
+        return adminVO;
     }
     public AdminVO getAdminById(String id){
-        int result = -1;
         String sql = "SELECT * FROM worker WHERE id =?";
         AdminVO adminVO = new AdminVO();
         Connection conn = null;

@@ -2,6 +2,7 @@ package com.nonage.admin.controller.action;
 
 import com.nonage.admin.controller.dao.AdminProductDAO;
 import com.nonage.admin.controller.dto.AdminProductVO;
+import com.nonage.admin.controller.dto.AdminVO;
 import com.nonage.controller.action.Action;
 
 import javax.servlet.RequestDispatcher;
@@ -16,11 +17,20 @@ public class AdminProductListAction implements Action {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = "admin/product/adminProductList.jsp";
+        HttpSession session = req.getSession();
+        AdminVO adminLoginUser = (AdminVO) session.getAttribute("adminLoginUser");
+        // ArrayList<AdminProductVO> adminProductList = (ArrayList<AdminProductVO>) req.getAttribute("adminProductList");
+
+        if(adminLoginUser == null){
+            url = "NonageServlet?command=admin_login_form";
+            RequestDispatcher dispatcher = req.getRequestDispatcher(url);
+            dispatcher.forward(req,resp);
+        }
 
         AdminProductDAO adminProductDAO = AdminProductDAO.getInstance();
-        ArrayList<AdminProductVO> adminproductList = adminProductDAO.listProduct();
+        ArrayList<AdminProductVO> adminProductList = adminProductDAO.listProduct();
 
-        req.setAttribute("adminproductList", adminproductList); // 변수명 수정
+        req.setAttribute("adminProductList", adminProductList); // 변수명 수정
 
         RequestDispatcher dispatcher = req.getRequestDispatcher(url);
         dispatcher.forward(req, resp);

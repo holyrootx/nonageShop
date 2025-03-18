@@ -18,7 +18,7 @@ public class AdminQnaListAction implements Action {
         String url = "admin/qna/admin_qna_list.jsp";
 
         HttpSession session = req.getSession();
-        AdminVO adminLoginUser = (AdminVO) session.getAttribute("adminLoginUser");
+        AdminVO adminLoginUser = (AdminVO)session.getAttribute("adminLoginUser");
         if(adminLoginUser == null){
             url = "NonageServlet?command=admin_login_form";
         } else{
