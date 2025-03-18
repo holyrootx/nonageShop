@@ -34,8 +34,8 @@ public class AdminLoginAction implements Action {
         HttpSession session = req.getSession();
         session.setAttribute("adminLoginUser",adminLoginUser);
 
-        // url = "NonageServlet?command=admin_product_list";
-        url = "admin/worker/loginTest.jsp";
+         url = "NonageServlet?command=admin_product_list";
+        // url = "admin/worker/loginTest.jsp";
         // 테스트 완료
         requestDispatcher = req.getRequestDispatcher(url);
         requestDispatcher.forward(req,resp);

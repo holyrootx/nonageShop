@@ -42,9 +42,9 @@ public class DBManager {
     // select을 수행한 후 리소스 해제를 위한 메소드
     public static void close(Connection conn, PreparedStatement stmt, ResultSet rs) {
         try {
-            rs.close();
-            stmt.close();
-            conn.close();
+            if(rs != null){rs.close();}
+            if(stmt != null){stmt.close();}
+            if(conn != null){conn.close();}
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,8 +53,8 @@ public class DBManager {
     // insert, update, delete 작업을 수행한 후 리소스 해제를 위한 메소드
     public static void close(Connection conn, PreparedStatement stmt) {
         try {
-            stmt.close();
-            conn.close();
+            if(stmt != null){stmt.close();}
+            if(conn != null){conn.close();}
         } catch (Exception e) {
             e.printStackTrace();
         }

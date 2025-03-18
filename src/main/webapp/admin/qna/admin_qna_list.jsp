@@ -7,37 +7,58 @@ pageEncoding="UTF-8"  isELIgnored="false"%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style><%@include file="/css/admin_design_head_footer.css"%></style>
+    <style><%@include file="/css/default_design.css"%></style>
+    <style>
+        .table-link-text:hover{
+            color: rgb(98, 54, 255);
+        }
+        .table-link-text:active{
+            color: black;
+        }
+    </style>
     <title>Admin Q&A List</title>
 </head>
 <body>
-   <!-- Admin Q&A 페이지 시작 -->
-<article>
-    <h1> 고객들의 민원 사항을 확인하는 곳 admin </h2>
-      <table id="cartList">
-      <tr>
-        <th>번호(답변여부)</th> <th>제목</th> <th>작성자</th> <th>작성일</th>
-      </tr>
+<%@ include file="/admin/admin_header.html" %>
+<!-- Admin Q&A List 페이지 시작 -->
+<div class="main-container">
+    <div class="flex-container-center">
+        <div class="left-navbar">
+            <h2 class="navbar-intro">Admin Setting</h2>
+            <ul class="navbar-list-wrapper">
+                <li class=""><a class="navbar-list-text-style" href="NonageServlet?command=admin_product_list">상품리스트</a></li>
+                <li class=""><a class="navbar-list-text-style" href="#">주문리스트</a></li>
+                <li class=""><a class="navbar-list-text-style" href="#">회원리스트</a></li>
+                <li class=""><a class="navbar-list-text-style" href="NonageServlet?command=admin_qna_list">Q&A리스트</a></li>
+            </ul>
+        </div>
+        <article class="article">
+            <h1 class="article-intro center"> 고객들의 민원 사항을 확인하는 곳 admin </h2>
+            <table id="qnaList" class="table-color-design">
+                <tr>
+                    <th class="table-th-design qna-list-padd">번호(답변여부)</th> <th class="table-th-design qna-list-padd">제목</th> <th class="table-th-design qna-list-padd">작성자</th> <th class="table-th-design qna-list-padd">작성일</th>
+                </tr>
 
-<c:forEach items = "${adminQnaList}" var="adminQnaVO">
-      <tr>
-        <td>
-            ${adminQnaVO.qseq}
-            <c:choose>
-                <c:when test="${adminQnaVO.rep==1}"> (미처리)</c:when>
-                <c:when test="${adminQnaVO.rep==2}"> (답변완료)</c:when>
-            </c:choose>
-         </td>
-        <td><a href="NonageServlet?command=admin_qna_detail&qseq=${adminQnaVO.qseq}">${adminQnaVO.subject}</td>
-        <td>${adminQnaVO.id}</td>
-        <td><fmt:formatDate value="${adminQnaVO.indate}" type="date"/></td>
-      </tr>
-      </c:forEach>
-      </table>
-      <div class="clear"></div>
-  </article>
-
-
-
-    <!-- Admin Q&A 페이지 끝 -->
+                <c:forEach items = "${adminQnaList}" var="adminQnaVO">
+                <tr>
+                    <td>
+                        ${adminQnaVO.qseq}
+                        <c:choose>
+                            <c:when test="${adminQnaVO.rep==1}"> (미처리)</c:when>
+                            <c:when test="${adminQnaVO.rep==2}"> (답변완료)</c:when>
+                        </c:choose>
+                    </td>
+                    <td><a class="table-link-text" href="NonageServlet?command=admin_qna_detail&qseq=${adminQnaVO.qseq}">${adminQnaVO.subject}</td>
+                    <td>${adminQnaVO.id}</td>
+                    <td><fmt:formatDate value="${adminQnaVO.indate}" type="date"/></td>
+                </tr>
+                </c:forEach>
+            </table>
+        </article>
+    </div>
+</div>
+<!-- Admin Q&A List 페이지 끝 -->
+<%@ include file="/admin/admin_footer.html" %>
 </body>
 </html>

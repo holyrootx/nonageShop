@@ -1,0 +1,117 @@
+/*Default Design*/
+body{
+    box-sizing: border-box;
+    margin: 0;
+}
+ul{
+    margin: 0;
+    padding: 0px;
+}
+li {
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.main-container{
+    margin: 0 auto;
+    width: 1280px;
+    min-height: 800px;
+}
+.flex-container-center{
+    display: flex;
+    padding: 24px 0px;
+    justify-content: center;
+    align-items: center;
+}
+.article{
+    width: 1000px;
+}
+/*Default Design*/
+
+/* LEFT NAV BAR */
+.left-navbar{
+    width: 180px;
+    margin-right: 10px;
+    text-align: center;
+}
+.navbar-intro{
+    margin: 0;
+    margin-bottom: 2px;
+}
+.navbar-list-wrapper{
+    border-top: double black;
+}
+.navbar-list-text-style{
+    display: inline-block;
+    width: 100%;
+    font-size: 20px;
+    padding: 4px 0px;
+    border-bottom: dotted black;
+
+}
+.navbar-list-text-style:hover{
+    background-color: rgb(221, 221, 221);
+}
+.navbar-list-text-style:active{
+    color: rgb(221, 221, 221);
+    background-color: rgb(0, 0, 0);
+}
+/* LEFT NAV BAR */
+
+/* Btn Design*/
+.btn-design{
+    width: 114px;
+    padding: 9px 0px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px black ;
+    background-color: rgb(255, 196, 0);
+    cursor: pointer;
+}
+.btn-design:hover{
+    box-shadow: 1px 1px 3px rgb(255, 196, 0);
+    background-color: black;
+    color: white;
+    box-shadow: 1px 1px 3px white ;
+}
+.btn-design:active{
+    color: rgb(255, 196, 0);
+    box-shadow: 1px 1px 3px rgb(255, 196, 0) ;
+    background-color: white;
+    border: none;
+}
+.btn-container{
+    text-align: center;
+    margin-left: 180px;
+}
+/* Btn Design*/
+
+.textarea-design{
+    width: 660px;
+    resize: none;
+    margin-right: 10px;
+}
+
+/* Table design*/
+table{
+    text-align: center;
+    width : 100%;
+}
+.table-color-design{
+    border-top: 3px solid black;
+    border-bottom: 2px solid black;
+    border-spacing: 0px;
+}
+.table-th-design{
+    background-color: rgb(221, 221, 221);
+}
+
+.center{
+    text-align: center;
+}
+table > tbody > tr > th,
+table > tbody > tr > td{
+    padding: 10px 0px;
+}
